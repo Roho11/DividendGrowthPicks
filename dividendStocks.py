@@ -8,152 +8,9 @@ import numpy as np
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-#!pip uninstall -y yfinance
-#!pip install yfinance --upgrade --no-cache-dir
 import yfinance as yf
-
-def get_snowball_id_from_ticker_list(list_of_dividend_paying_stocks):
-    
-    snowball_id_dict = {}
-    snowball_not_found = []
-
-    for ticker in list_of_dividend_paying_stocks:
-        try:
-            url = f"https://snowball-analytics.com/_next/data/XEbEHDfSl-Qdfo-dMraex/public/asset/{ticker}.US.USD.json"
-
-            querystring = {"slug":f"{ticker}.US.USD"}
-
-            payload = ""
-            headers = {
-                "authority": "snowball-analytics.com",
-                "accept": "*/*",
-                "accept-language": "sl-SI,sl;q=0.9,en-GB;q=0.8,en;q=0.7",
-    
-                "referer": f"https://snowball-analytics.com/public/asset/{ticker}.US.USD",
-
-                "sec-ch-ua-mobile": "?0",
-
-                "sec-fetch-dest": "empty",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-site": "same-origin",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
-                "x-nextjs-data": "1"
-                }
-
-            response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
-            if response.status_code == 404:
-                print(f"Resource not found for {ticker}.")
-                snowball_not_found.append(ticker)
-                continue 
-        
-            json = response.json()
-            assetInfoId = json['pageProps']['asset']['assetInfoId']
-            snowball_id_dict[ticker] = assetInfoId 
-        except KeyError:
-            snowball_not_found.append(ticker)
-            print(f'{ticker} not found on Snowball.')
-    return snowball_id_dict, snowball_not_found
-    
-    print(f'{len(snowball_id_dict)} stock IDs found!')
-    print(f'{len(snowball_not_found)} stocks were not able to be found on Snowball.')
-    
-def get_snowball_id_from_ticker_list_v2(list_of_dividend_paying_stocks):
-    snowball_id_dict   = {}
-    snowball_not_found = []
-
-    for ticker in list_of_dividend_paying_stocks:
-        try:
-            url = "https://snowball-analytics.com/extapi/api/assets/search"
-
-            querystring = {"search":f"{ticker}","assetTypes[]":["1","2","3","5","8","7"]}
-
-            payload = ""
-            headers = {"User-Agent": "Insomnia/2023.5.7"}
-
-            response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
-
-            #print(response.text)
-
-            if response.status_code == 404:
-                print(f"Resource not found (404) for {ticker}.")
-                snowball_not_found.append(ticker)
-                continue 
-            
-            json = response.json()
-            assetInfoId = json[0]['pageProps']['asset']['assetInfoId'] # v tem primeru json vrne list zato izberemo 0
-            snowball_id_dict[ticker] = assetInfoId 
-        except KeyError:
-            snowball_not_found.append(ticker)
-            print(f'{ticker} not found (KeyError) on Snowball.')
-    return snowball_id_dict, snowball_not_found
-            
-        
-    print(f'{len(snowball_id_dict)} stock IDs found!')
-    print(f'{len(snowball_not_found)} stocks were not able to be found on Snowball.')
-    
-def get_us_stocks():
-
-    #dobimo vse ameriske delnice v DataFrame tickers
-    #vergla 50min
-
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
-
-    exchanges = {'nyse': 'newyorkstockexchange', 'nasdaq': 'nasdaq', 'amex': 'americanstockexchange'} #so to vse ameriške borze?
-
-    abeceda = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0']
-
-    tickers = pd.DataFrame()
-
-    for key, value in exchanges.items():
-        for char in abeceda:
-            response = requests.get(f'https://www.advfn.com/{key}/{value}.asp?companies={char}', headers=headers)
-            if response.status_code == 200:
-                all_symbols = pd.read_html(response.text)
-            else:
-                print(f"Failed to retrieve data. Status code: {response.status_code}")
-            df = pd.DataFrame(all_symbols[4]).drop([0,1]).drop(columns=2).reset_index(drop=True)
-            tickers = pd.concat([tickers, df], ignore_index=True)
-    
-    print(f'Scraped {len(tickers)} rows of stocks.')
-    return tickers
-
-def split_dividend_stocks(tickers):
-    ##### Izlocim delnice, ki ne izplacujejo dividend - not_found_stocks bi lahko vseeno kje preveril
-    ##### to vergla cca 1h 
-
-    #iz DataFramea pretvorimo samo tickerje v list all_stocks_list
-    all_stocks_list = tickers[1].tolist()
-
-    dividend_paying_stocks = []
-    not_found_stocks       = []
-
-    for symbol in all_stocks_list:
-        try:
-            stock = yf.Ticker(symbol)
-            info = stock.info
-            #print(info)
-            if 'dividendRate' in info and info['dividendRate'] > 0:
-                dividend_paying_stocks.append(symbol)
-        except requests.exceptions.HTTPError as e:
-            if e.response.status_code == 404:
-                #print(f"The requested resource ({symbol}) was not found (404 error).")
-                not_found_stocks.append(symbol)
-
-    print(f'Found {len(dividend_paying_stocks)} dividend stocks.')
-    print(f'There were {len(not_found_stocks)} stocks with no dividend data!')
-
-    #shrani jih lokalno
-    dividend_file_path = '/Users/Roho11/Desktop/pyscripts/dividend_paying_stocks_list.json'
-    not_found_file_path = '/Users/Roho11/Desktop/pyscripts/no_dividend_stocks_list.json'
-
-    with open(dividend_file_path, 'w') as dividend_file:
-        json.dump(dividend_paying_stocks, dividend_file)
-
-    with open(not_found_file_path, 'w') as not_found_file:
-        json.dump(not_found_stocks, not_found_file)
-    return dividend_paying_stocks, not_found_stocks
+import os
+from config import db_url
 
 def get_snowball_analytics(stock_ids):
     #dobimo analiticne podatke iz snowball
@@ -190,31 +47,27 @@ def get_snowball_analytics(stock_ids):
             all_div_stocks_data.append(qsr)
         return all_div_stocks_data
     except KeyError:
-        print('Snowball ne vrne analiz!')
+        print('Snowball not responding.')
 
-#get_us_stocks()
-#split_dividend_stocks(tickers)
-#get_snowball_id_from_ticker_list(dividend_paying_stocks)
-
-
+#Get data, store data
  
-#rabis samo ta seznam us dividend stock list with tickers   
-with open('/Users/Roho11/Desktop/pyscripts/usa_div_stocks_sb_id.json', 'r') as json_file:
+sb_ids_file = os.path.join(os.path.dirname(__file__), "usa_div_stocks_sb_id.json") 
+with open(sb_ids_file, 'r') as json_file:
     stock_ids_file = json.load(json_file)
 
+div_stocks_data = get_snowball_analytics(stock_ids_file)
+df              = pd.DataFrame(div_stocks_data)
 
-div_stocks_data   = get_snowball_analytics(stock_ids_file)
-
-noDiv_df = pd.DataFrame(div_stocks_data)
-df = pd.DataFrame(div_stocks_data)
-
-#za prvi izvoz v excel uporabim all_df, za nadaljno analizo pa df
-all_df = pd.concat([df, noDiv_df], ignore_index=True)
+### Dodaj shranjevanje v SQL
 
 l_today   = datetime.today()
 l_datum   = l_today.strftime("%Y-%m-%d")
-all_df.to_excel(f'/Users/Roho11/Desktop/pyscripts/dividendStocksAllData/DividendStockData {l_datum}.xlsx')
-#df_clean = df[['lastUpdated', 'ticker', 'currentPrice', 'sector', 'industry', 'marketCapMln', 'marketCapName', 'eps', 'forwardEPS', 'pe', 'payoutRatio', 'divYieldFWD', 'freeCashFlowPayout', 'freeCashFlowPerShare' 'divPerYearFWD', 'divGrowth1Y', 'divGrowth3Y', 'divGrowth5Y', 'divGrowthStreak', 'divFrequency']]
+DSDfile   = os.path.join(os.path.dirname(__file__), f"dividendStocksAllData/DividendStockData {l_datum}.xlsx") 
+
+df.to_excel(DSDfile)
+
+#For analysis we use df_clean 
+#The first 2 metrics are used in filtered_df (PayoutRatio & divYieldFWD)
 df_clean = df[['lastUpdated', 'ticker', 'currentPrice', 'sector', 'industry','companyDescription', 'marketCapMln', 'marketCapName', 'eps', 'forwardEPS', 'pe', 'payoutRatio','divYieldFWD', 'divPerYearFWD', 'divGrowth1Y', 'divGrowth3Y', 'divGrowth5Y', 'divGrowthStreak', 'divFrequency']]
 filtered_df = df_clean[
     (df_clean['payoutRatio'].between(30, 50)) &
@@ -223,9 +76,7 @@ filtered_df = df_clean[
     #(df_clean['divGrowthStreak'] > 5.0)
 ]
 
-#filtered_df.info()
-
-# Dodamo FCF, FCFP in stevilo delnic v df
+# Adding FCF, FCFP and number of shares to df
 def add_free_cash_flow(df):
     mc          = df['marketCapMln']
     cp          = df['currentPrice']
@@ -241,71 +92,23 @@ def add_free_cash_flow(df):
         fcfp        = divyield / fcfps
     except IndexError:
         print(f"Za ticker {df['ticker']} so podatki o cash flow: {cf}")
-        fcfp = np.nan
-        fcf = np.nan
+        fcfp       = np.nan
+        fcf        = np.nan
         num_shares = np.nan
   
     return fcfp, fcf, num_shares
-#filtered_df['freeCashFlow'] = filtered_df['ticker'].apply(get_free_cash_flow)
 
 filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
 
+#Got all our data in final_df - added metric freeCashFlowPayout
 final_df = filtered_df[
     (filtered_df['freeCashFlowPayout'].between(0.0, 0.7))
 ]
 
-# test glede dividend - vrne vse zgodovino izplacanih dividend
-#Dividend Growth Rate (CAGR) = [(Divn / Div0)^(1/n)] - 1
 
-def get_fcf_data_from_info(all_div_stocks_data):
-    #dodamo v dict free cash flow podatke / lahko pride do 404 napake na Yahoo
-    #moral bi df razredciti z filtri in potem samo tistim dodati podatke o free cash flow, da me yf ne bana
+#other 2 metrics: DivGrowth and EPS, FCFPS trend
+# Inflation data
 
-    all_div_stocks_data_w_cf = []
-    no_cash_flow_data = []
-    for div_ticker in all_div_stocks_data:
-        if 'ticker' in div_ticker:
-            print(div_ticker['ticker'])
-            try:
-                ticker = yf.Ticker(div_ticker['ticker'])
-                freeCashflow = ticker.info['freeCashflow'] #pogledni naslednji blok - lahko naredis z .cashflow
-                sharesOutstanding = ticker.info['sharesOutstanding']
-                impliedSharesOutstanding = ticker.info['impliedSharesOutstanding'] #uporabim tega ker je rezultat pri market cap / price of stock
-                floatShares = ticker.info['floatShares']
-                annualDividendPerYear = div_ticker['divPerYearFWD']
-                if impliedSharesOutstanding > 0:
-                    freeCashFlowPerShare = (freeCashflow / impliedSharesOutstanding) 
-                    div_ticker['freeCashFlowPerShare'] = freeCashFlowPerShare
-                else:
-                    freeCashFlowPerShare = (freeCashflow / sharesOutstanding) 
-                    div_ticker['freeCashFlowPerShare'] = freeCashFlowPerShare
-                freeCashFlowPayout = annualDividendPerYear / freeCashFlowPerShare
-                div_ticker['freeCashFlowPayout'] = freeCashFlowPayout
-            except KeyError:
-                print(f"{div_ticker['ticker']} has no free cash flow data.")
-                no_cash_flow_data.append(div_ticker['ticker'])
-            except requests.exceptions.HTTPError as e:
-                if e.response.status_code == 404:
-                    print(f"The requested resource ({div_ticker['ticker']}) was not found (404 error).")
-        else:
-            print("Missing 'ticker' key in div_ticker")
-        
-            
-        all_div_stocks_data_w_cf.append(div_ticker)
-    print(f'{len(no_cash_flow_data)} stocks have no cash flow data.')
-    return 
-    
-#store dividend stocks on 3/5 metrics: PayoutRatio, DivYield and FreeCashFlowPayout
-#output_file_path = f"/Users/Roho11/Desktop/pyscripts/dividendStocks/DividendStockData3metrics {l_datum}.xlsx"
-#final_df.to_excel(output_file_path, index=False)
-
-####################################################################################
-# Inflacija
-####################################################################################
-
-#continue with other 2 metrics: DivGrowth and EPS, FCFPS trend
-
-db_url = 'postgresql+psycopg2://roho:t5aresuV@localhost:5432/snowballStocks'
 engine = create_engine(db_url)
 inf_df = pd.read_sql(f"SELECT * FROM inflation ORDER BY month desc LIMIT 1", engine)
    
@@ -328,13 +131,10 @@ divstocks_allmetrics = final_df[
     #(final_df['divGrowthStreak'] > 4)
 ]
 
+# Setting normatives and points
+
 data = divstocks_allmetrics.copy()
 
-####################################################################################
-# Analiza in izpisi
-####################################################################################
-
-#naredimo norme
 max_div_growth_years = data['divGrowthStreak'].max()
 data.loc[:, 'divGrowthStreak_norm'] = data['divGrowthStreak'].apply(lambda x: x / max_div_growth_years)
 
@@ -353,15 +153,15 @@ data.loc[:, 'Inflation_norm5'] = data['divGrowth5Y'].apply(lambda x : 1.0 if x >
 
 data.loc[:, 'Inflation_norm'] = (data['Inflation_norm1'] + data['Inflation_norm3'] + data['Inflation_norm5']) / 3
 
-# dolocimo ponder
-growth_streak_ponder = 0.2
-div_yield_ponder = 0.2
-growth_vs_inflation_ponder = 0.2
-payout_ratio_ponder = 0.2
-fcfp_ponder = 0.2
-ponder_sum = growth_streak_ponder+div_yield_ponder+growth_vs_inflation_ponder+payout_ratio_ponder+fcfp_ponder
 
-#skalkuliramo koncni order
+growth_streak_ponder       = 0.25
+div_yield_ponder           = 0.25
+growth_vs_inflation_ponder = 0.3
+payout_ratio_ponder        = 0.1
+fcfp_ponder                = 0.1
+ponder_sum = growth_streak_ponder+div_yield_ponder+growth_vs_inflation_ponder+payout_ratio_ponder+fcfp_ponder #1
+
+#Calculate final points for ordering stocks
 data['Points'] = (data['divGrowthStreak_norm'] * growth_streak_ponder +
 data['divYieldFWD_norm'] * div_yield_ponder +
 data['Inflation_norm'] * growth_vs_inflation_ponder +
@@ -371,17 +171,19 @@ data['freeCashFlowPayout_norm'] * fcfp_ponder
 
 sorted_data = data.sort_values(by=['Points'], ascending=False)
 
-output_file_path = f"/Users/Roho11/Desktop/pyscripts/dividendStocks/DividendStockDataFullFilter {l_datum}.xlsx"
+#Output result excel
+output_file_path = os.path.join(os.path.dirname(__file__),f'dividendStocksResults/DividendStockResults {l_datum}.xlsx')
 sorted_data.to_excel(output_file_path, index=False)
 
-prev_date     = l_today - pd.Timedelta(weeks=1)
-prev_date_f   = l_today.strftime("%Y-%m-%d")
-df_previous = pd.read_excel(f"/Users/Roho11/Desktop/pyscripts/dividendStocks/DividendStockDataFullFilter {prev_date_f}.xlsx")
-
-list_latest_stocks = list(sorted_data['ticker'])
+#Get previous week results for comparison
+prev_date            = l_today - pd.Timedelta(weeks=1)
+prev_date_f          = l_today.strftime("%Y-%m-%d")
+df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/DividendStockDataFullFilter {prev_date_f}.xlsx'))
+list_latest_stocks   = list(sorted_data['ticker'])
 list_previous_stocks = list(df_previous['ticker'])
 
-#Izpis newcomers
+#Start of txt result extraction
+#Newcomers - not working
 newcomers = []
 for i in list_latest_stocks:
     if i not in list_previous_stocks:
@@ -412,10 +214,11 @@ FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %
             print(f"Ticker {newcomer} not found in df_latest.")
 else:
     newcomers_text = "No newcomers."
-with open('/Users/Roho11//Desktop/pyscripts/DivStocks_tweet.txt', 'w') as file:
+    
+with open(os.path.join(os.path.dirname(__file__),'DivStocks_tweet.txt'), 'w') as file:
     print(newcomers_text, file=file)  
 
-#izpis top dividend yield per price pick
+#top dividend yield per price pick
 dvYields_high_threshold = sorted_data['divYieldFWD'].quantile(0.75)
 CurrentPrice_low_threshold = sorted_data['currentPrice'].quantile(0.25)
 
@@ -437,10 +240,10 @@ FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %
 3Y Div. growth: {round(row['divGrowth3Y'],2)} %
 5Y Div. growth: {round(row['divGrowth5Y'],2)} %
           '''
-with open('/Users/Roho11//Desktop/pyscripts/DivStocks_tweet.txt', 'a') as file:
+with open(os.path.join(os.path.dirname(__file__),'DivStocks_tweet.txt'), 'a') as file:
     print(div_text, file=file)   
 
-#izpis top 3
+#top 3 stocks
 
 top3 = sorted_data.head(3)
 medals = {0:'\U0001F947', 1: '\U0001F948', 2: '\U0001F949'}
@@ -457,13 +260,10 @@ FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %
 5Y Div. growth: {round(row['divGrowth5Y'],2)} %
           '''
     i += 1 
-with open('/Users/Roho11//Desktop/pyscripts/DivStocks_tweet.txt', 'a') as file:
+with open(os.path.join(os.path.dirname(__file__),'DivStocks_tweet.txt'), 'a') as file:
     print(text, file=file) 
      
-        
-####################################################################################
-# vizualizacije 
-####################################################################################
+#Visualizations
 
 #scatter plot current price vs div yield
 plt.figure(figsize=(8, 6))
@@ -472,9 +272,9 @@ plt.title('Current Price vs Forward Dividend Yield by Ticker')
 plt.xlabel('Current Price ($)')
 plt.ylabel('Forward Dividend Yield')
 plt.legend(title='Ticker')
-plt.savefig(f'/Users/Roho11/Desktop/pyscripts/dividendStocks/Price vs Div yield scatter {l_datum}.png')
+plt.savefig(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/Price vs Div yield scatter {l_datum}.png'))
 
-#bar plot sestava tockovanja
+#bar plot - point cumulatives
 ticker_names = data['ticker']
 points = data['Points']
 other_values = data[['divGrowthStreak_norm', 'divYieldFWD_norm','Inflation_norm', 'payoutRatio_norm', 'freeCashFlowPayout_norm']]
@@ -486,17 +286,12 @@ index = range(num_tickers)  # Index for x-axis positions
 plt.figure(figsize=(12, 8))
 
 # Cooler color palette
-main_bar_color = 'darkgray'  # Main bar color
-nested_bar_colors = ['skyblue', 'coral','gold', 'aquamarine', 'plum']  # Nested bars colors
+main_bar_color = 'darkgray'  
+nested_bar_colors = ['skyblue', 'coral','gold', 'aquamarine', 'plum']  
 
-# Plotting the main bars for Points100
 plt.bar(index, points, color=main_bar_color, label='Points')
 
-# Plotting the nested bars for other values inside each main bar
 for i, col in enumerate(other_values.columns):
-    #print([x + (i - 2) * bar_width for x in index])
-    #print(other_values[col])
-
     plt.bar([x + (i - 2) * bar_width for x in index], other_values[col], bar_width,
             label=col.rstrip('_norm'), color=nested_bar_colors[i])
 
@@ -506,7 +301,7 @@ plt.title('Main Bar (Points) with Nested Bars (Metrics Normalized Values)')
 plt.xticks(index, ticker_names)
 plt.legend()
 plt.tight_layout()
-plt.savefig(f'/Users/Roho11/Desktop/pyscripts/dividendStocks/Points metrics calculation {l_datum}.png')
+plt.savefig(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/Points metrics calculation {l_datum}.png'))
 
 sector_counts = sorted_data['sector'].value_counts()
 
@@ -516,9 +311,9 @@ plt.axis('equal')
 plt.title('Sector distribution', fontsize=18, fontweight='bold')
 plt.xlabel('Sector', weight="bold", color="#000000", fontsize=14, labelpad=20)
 plt.ylabel('Counts', weight="bold", color="#000000", fontsize=14, labelpad=20)
-plt.savefig(f'/Users/Roho11/Desktop/pyscripts/dividendStocks/Sector distribution {l_datum}.png')
+plt.savefig(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/Sector distribution {l_datum}.png'))
 
 corr_df = data[['Points', 'divGrowthStreak_norm', 'divYieldFWD_norm', 'payoutRatio_norm', 'freeCashFlowPayout_norm']]
 plt.figure(figsize=(16, 10))
 sns.heatmap(corr_df.corr(), annot=True)
-plt.savefig(f'/Users/Roho11/Desktop/pyscripts/dividendStocks/Correlation {l_datum}.png')
+plt.savefig(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/Correlation {l_datum}.png'))
