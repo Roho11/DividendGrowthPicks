@@ -13,9 +13,7 @@ import os
 from config import db_url
 
 def get_snowball_analytics(stock_ids):
-    #dobimo analiticne podatke iz snowball
     all_div_stocks_data = []
-    div_stock_data      = []
     try:
         for key, value in stock_ids.items():  
             url = "https://snowball-analytics.com/extapi/api/public/asset-info/summary"
@@ -43,20 +41,47 @@ def get_snowball_analytics(stock_ids):
             response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
 
             qsr = response.json()
-            #print(qsr)
             all_div_stocks_data.append(qsr)
         return all_div_stocks_data
     except KeyError:
         print('Snowball not responding.')
 
+def add_free_cash_flow(df):
+    mc          = df['marketCapMln']
+    cp          = df['currentPrice']
+    divyield    = df['divYieldFWD']
+    num_shares  = mc / cp
+    time.sleep(2)
+    tick        = yf.Ticker(df['ticker'])
+    cf          = tick.cash_flow
+    try:
+        last_value  = cf.columns[0]
+        fcf         = cf[last_value]['Free Cash Flow'] 
+        fcfps       = fcf / num_shares
+        fcfp        = divyield / fcfps
+    except IndexError:
+        #print(f"{df['ticker']} cash flow: {cf}")
+        fcfp       = np.nan
+        fcf        = np.nan
+        num_shares = np.nan
+    return fcfp, fcf, num_shares
+
 #Get data, store data
- 
 sb_ids_file = os.path.join(os.path.dirname(__file__), "usa_div_stocks_sb_id.json") 
 with open(sb_ids_file, 'r') as json_file:
     stock_ids_file = json.load(json_file)
 
 div_stocks_data = get_snowball_analytics(stock_ids_file)
 df              = pd.DataFrame(div_stocks_data)
+
+#Datetime objects
+df['lastUpdated']                     = pd.to_datetime(df['lastUpdated'])
+df['nextEarningsReportDate']          = pd.to_datetime(df['nextEarningsReportDate'])
+df['lastEarningsReportDate']          = pd.to_datetime(df['lastEarningsReportDate'])
+df['nextEarningsReportReportingDate'] = pd.to_datetime(df['nextEarningsReportReportingDate'])
+df['lastEarningsReportReportingDate'] = pd.to_datetime(df['lastEarningsReportReportingDate'])
+df['nextDividendDate']                = pd.to_datetime(df['nextDividendDate'])
+df['exDividendDate']                  = pd.to_datetime(df['exDividendDate'])
 
 ### Dodaj shranjevanje v SQL
 
@@ -66,49 +91,22 @@ DSDfile   = os.path.join(os.path.dirname(__file__), f"dividendStocksAllData/Divi
 
 df.to_excel(DSDfile)
 
-#For analysis we use df_clean 
-#The first 2 metrics are used in filtered_df (PayoutRatio & divYieldFWD)
-df_clean = df[['lastUpdated', 'ticker', 'currentPrice', 'sector', 'industry','companyDescription', 'marketCapMln', 'marketCapName', 'eps', 'forwardEPS', 'pe', 'payoutRatio','divYieldFWD', 'divPerYearFWD', 'divGrowth1Y', 'divGrowth3Y', 'divGrowth5Y', 'divGrowthStreak', 'divFrequency']]
+#Adding the first 2 filters to filtered_df (PayoutRatio & divYieldFWD)
+df_clean    = df[['lastUpdated', 'ticker', 'currentPrice', 'sector', 'industry','companyDescription', 'marketCapMln', 'marketCapName', 'eps', 'forwardEPS', 'pe', 'payoutRatio','divYieldFWD', 'divPerYearFWD', 'divGrowth1Y', 'divGrowth3Y', 'divGrowth5Y', 'divGrowthStreak', 'divFrequency']]
 filtered_df = df_clean[
     (df_clean['payoutRatio'].between(30, 50)) &
     (df_clean['divYieldFWD'].between(1, 3.1)) 
-    #(df_clean['divGrowth1Y'] > 5.0) &
-    #(df_clean['divGrowthStreak'] > 5.0)
 ]
 
-# Adding FCF, FCFP and number of shares to df
-def add_free_cash_flow(df):
-    mc          = df['marketCapMln']
-    cp          = df['currentPrice']
-    divyield    = df['divYieldFWD']
-    num_shares  = mc / cp
-    time.sleep(3)
-    tick        = yf.Ticker(df['ticker'])
-    cf          = tick.cash_flow
-    try:
-        last_value  = cf.columns[0]
-        fcf         = cf[last_value]['Free Cash Flow'] 
-        fcfps       = fcf / num_shares
-        fcfp        = divyield / fcfps
-    except IndexError:
-        print(f"Za ticker {df['ticker']} so podatki o cash flow: {cf}")
-        fcfp       = np.nan
-        fcf        = np.nan
-        num_shares = np.nan
-  
-    return fcfp, fcf, num_shares
-
+# Adding FCF, FCFP and number of shares ONLY to the filtered_df
 filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
 
-#Got all our data in final_df - added metric freeCashFlowPayout
+#added filter freeCashFlowPayout
 final_df = filtered_df[
     (filtered_df['freeCashFlowPayout'].between(0.0, 0.7))
 ]
 
-
-#other 2 metrics: DivGrowth and EPS, FCFPS trend
 # Inflation data
-
 engine = create_engine(db_url)
 inf_df = pd.read_sql(f"SELECT * FROM inflation ORDER BY month desc LIMIT 1", engine)
    
@@ -116,19 +114,18 @@ inflation_1_year = inf_df['inflation1y'][0]
 inflation_3_year = inf_df['inflation3y'][0]
 inflation_5_year = inf_df['inflation5y'][0]
 
+#last 2 filters: DivGrowth and EPS, FCFPS trend
 divstocks_allmetrics = final_df[
     (((final_df['divGrowth1Y'] >= inflation_1_year) &
-    (final_df['divGrowth3Y'] >= inflation_3_year)) |
+    (final_df['divGrowth3Y'] >= inflation_3_year))  |
     
-    ((final_df['divGrowth1Y'] >= inflation_1_year) &
-    (final_df['divGrowth5Y'] >= inflation_5_year)) |
+    ((final_df['divGrowth1Y'] >= inflation_1_year)  &
+    (final_df['divGrowth5Y'] >= inflation_5_year))  |
     
-    ((final_df['divGrowth3Y'] >= inflation_3_year) &
+    ((final_df['divGrowth3Y'] >= inflation_3_year)  &
     (final_df['divGrowth5Y'] >= inflation_5_year))) &
     
     (final_df['forwardEPS'] > final_df['eps']) 
-    
-    #(final_df['divGrowthStreak'] > 4)
 ]
 
 # Setting normatives and points
@@ -153,7 +150,6 @@ data.loc[:, 'Inflation_norm5'] = data['divGrowth5Y'].apply(lambda x : 1.0 if x >
 
 data.loc[:, 'Inflation_norm'] = (data['Inflation_norm1'] + data['Inflation_norm3'] + data['Inflation_norm5']) / 3
 
-
 growth_streak_ponder       = 0.25
 div_yield_ponder           = 0.25
 growth_vs_inflation_ponder = 0.3
@@ -171,6 +167,8 @@ data['freeCashFlowPayout_norm'] * fcfp_ponder
 
 sorted_data = data.sort_values(by=['Points'], ascending=False)
 
+#Dodaj shranjevanje v SQL
+
 #Output result excel
 output_file_path = os.path.join(os.path.dirname(__file__),f'dividendStocksResults/DividendStockResults {l_datum}.xlsx')
 sorted_data.to_excel(output_file_path, index=False)
@@ -187,8 +185,7 @@ list_previous_stocks = list(df_previous['ticker'])
 newcomers = []
 for i in list_latest_stocks:
     if i not in list_previous_stocks:
-        newcomers.append(i)
-print(newcomers)        
+        newcomers.append(i)       
 if len(newcomers) > 0:
     if len(newcomers) == 1:
         newcomers_text = "This week's newcomer \U0001F6F0"
@@ -244,7 +241,6 @@ with open(os.path.join(os.path.dirname(__file__),'DivStocks_tweet.txt'), 'a') as
     print(div_text, file=file)   
 
 #top 3 stocks
-
 top3 = sorted_data.head(3)
 medals = {0:'\U0001F947', 1: '\U0001F948', 2: '\U0001F949'}
 i = 0

@@ -1,6 +1,7 @@
 from datetime import datetime
 import pandas as pd
 from sqlalchemy import create_engine
+from config import db_url
 
 url = 'https://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/'
 dfs = pd.read_html(url)
@@ -66,7 +67,6 @@ inf_data_df = pd.DataFrame({
     'inflation5y': [inflation_5_year]
 })
 
-db_url = 'postgresql+psycopg2://roho:t5aresuV@localhost:5432/snowballStocks'
 engine = create_engine(db_url)
 result_db_df = pd.read_sql(f"SELECT * FROM inflation where month = '{obdobje}'", engine)
 
