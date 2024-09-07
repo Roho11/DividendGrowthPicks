@@ -74,16 +74,6 @@ with open(sb_ids_file, 'r') as json_file:
 div_stocks_data = get_snowball_analytics(stock_ids_file)
 df              = pd.DataFrame(div_stocks_data)
 
-
-#df['lastUpdated'] = pd.to_datetime(df['lastUpdated'], errors='coerce')
-#df['nextEarningsReportDate']          = pd.to_datetime(df['nextEarningsReportDate'], format='%Y-%m-%dT%H:%M:%S')
-#df['lastEarningsReportDate']          = pd.to_datetime(df['lastEarningsReportDate'], format='%Y-%m-%dT%H:%M:%S')
-#df['nextEarningsReportReportingDate'] = pd.to_datetime(df['nextEarningsReportReportingDate'], format='%Y-%m-%dT%H:%M:%S')
-#df['lastEarningsReportReportingDate'] = pd.to_datetime(df['lastEarningsReportReportingDate'], format='%Y-%m-%dT%H:%M:%S')
-#df['exDividendDate']                  = pd.to_datetime(df['exDividendDate'], format='%Y-%m-%dT%H:%M:%S')
-
-### Dodaj shranjevanje v SQL
-
 l_today   = datetime.today()
 l_datum   = l_today.strftime("%Y-%m-%d")
 DSDfile   = os.path.join(os.path.dirname(__file__), f"dividendStocksAllData/DividendStockData {l_datum}.xlsx") 
@@ -132,22 +122,22 @@ divstocks_allmetrics = final_df[
 data = divstocks_allmetrics.copy()
 
 max_div_growth_years = data['divGrowthStreak'].max()
-data.loc[:, 'divGrowthStreak_norm'] = data['divGrowthStreak'].apply(lambda x: x / max_div_growth_years)
+data.loc[:, 'divGrowthStreak_norm'] = round(data['divGrowthStreak'].apply(lambda x: x / max_div_growth_years),5)
 
 max_div_yield = 3.1
-data.loc[:, 'divYieldFWD_norm'] = data['divYieldFWD'].apply(lambda x : x / max_div_yield)
+data.loc[:, 'divYieldFWD_norm'] = round(data['divYieldFWD'].apply(lambda x : x / max_div_yield),5)
 
 min_payout_ratio = 30 # 30%
-data.loc[:, 'payoutRatio_norm'] = data['payoutRatio'].apply(lambda x : min_payout_ratio / x)
+data.loc[:, 'payoutRatio_norm'] = round(data['payoutRatio'].apply(lambda x : min_payout_ratio / x),5)
 
 max_free_cfp = 0.7 # 70%
-data.loc[:, 'freeCashFlowPayout_norm'] = data['freeCashFlowPayout'].apply(lambda x : 1 - x / max_free_cfp)
+data.loc[:, 'freeCashFlowPayout_norm'] = round(data['freeCashFlowPayout'].apply(lambda x : 1 - x / max_free_cfp),5)
 
-data.loc[:, 'Inflation_norm1'] = data['divGrowth1Y'].apply(lambda x : 1.0 if x >= inflation_1_year else x / inflation_1_year)
-data.loc[:, 'Inflation_norm3'] = data['divGrowth3Y'].apply(lambda x : 1.0 if x >= inflation_3_year else x / inflation_3_year)
-data.loc[:, 'Inflation_norm5'] = data['divGrowth5Y'].apply(lambda x : 1.0 if x >= inflation_5_year else x / inflation_5_year)
+data.loc[:, 'Inflation_norm1'] = round(data['divGrowth1Y'].apply(lambda x : 1.0 if x >= inflation_1_year else x / inflation_1_year),5)
+data.loc[:, 'Inflation_norm3'] = round(data['divGrowth3Y'].apply(lambda x : 1.0 if x >= inflation_3_year else x / inflation_3_year),5)
+data.loc[:, 'Inflation_norm5'] = round(data['divGrowth5Y'].apply(lambda x : 1.0 if x >= inflation_5_year else x / inflation_5_year),5)
 
-data.loc[:, 'Inflation_norm'] = (data['Inflation_norm1'] + data['Inflation_norm3'] + data['Inflation_norm5']) / 3
+data.loc[:, 'Inflation_norm'] = round((data['Inflation_norm1'] + data['Inflation_norm3'] + data['Inflation_norm5']) / 3,5)
 
 growth_streak_ponder       = 0.25
 div_yield_ponder           = 0.25
@@ -157,28 +147,23 @@ fcfp_ponder                = 0.1
 ponder_sum = growth_streak_ponder+div_yield_ponder+growth_vs_inflation_ponder+payout_ratio_ponder+fcfp_ponder #1
 
 #Calculate final points for ordering stocks
-data['Points'] = (data['divGrowthStreak_norm'] * growth_streak_ponder +
+data['Points'] = round((data['divGrowthStreak_norm'] * growth_streak_ponder +
 data['divYieldFWD_norm'] * div_yield_ponder +
 data['Inflation_norm'] * growth_vs_inflation_ponder +
 data['payoutRatio_norm'] * payout_ratio_ponder +
 data['freeCashFlowPayout_norm'] * fcfp_ponder 
-)
+)*100,2)
 
 sorted_data = data.sort_values(by=['Points'], ascending=False)
-
-#Dodaj shranjevanje v SQL
 
 #Output result excel
 output_file_path = os.path.join(os.path.dirname(__file__),f'dividendStocksResults/DividendStockResults {l_datum}.xlsx')
 sorted_data.to_excel(output_file_path, index=False)
 
 #Get previous week results for comparison
-#prev_date            = l_today - pd.Timedelta(weeks=1)
-#prev_date_f          = l_today.strftime("%Y-%m-%d")
 all_div_files        = os.listdir(os.path.join(os.path.dirname(__file__),f'dividendStocksResults'))
 all_div_files.sort()
 df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/{all_div_files[0]}'))    
-#df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/DividendStockData {prev_date_f}.xlsx'))
 list_latest_stocks   = list(sorted_data['ticker'])
 list_previous_stocks = list(df_previous['ticker'])
 
