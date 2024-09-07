@@ -12,7 +12,6 @@ import yfinance as yf
 import os
 from config import db_url
 
-
 def get_snowball_analytics(stock_ids):
     all_div_stocks_data = []
     try:
@@ -75,14 +74,13 @@ with open(sb_ids_file, 'r') as json_file:
 div_stocks_data = get_snowball_analytics(stock_ids_file)
 df              = pd.DataFrame(div_stocks_data)
 
-#Datetime objects
-df['lastUpdated']                     = pd.to_datetime(df['lastUpdated'])
-df['nextEarningsReportDate']          = pd.to_datetime(df['nextEarningsReportDate'])
-df['lastEarningsReportDate']          = pd.to_datetime(df['lastEarningsReportDate'])
-df['nextEarningsReportReportingDate'] = pd.to_datetime(df['nextEarningsReportReportingDate'])
-df['lastEarningsReportReportingDate'] = pd.to_datetime(df['lastEarningsReportReportingDate'])
-df['nextDividendDate']                = pd.to_datetime(df['nextDividendDate'])
-df['exDividendDate']                  = pd.to_datetime(df['exDividendDate'])
+
+#df['lastUpdated'] = pd.to_datetime(df['lastUpdated'], errors='coerce')
+#df['nextEarningsReportDate']          = pd.to_datetime(df['nextEarningsReportDate'], format='%Y-%m-%dT%H:%M:%S')
+#df['lastEarningsReportDate']          = pd.to_datetime(df['lastEarningsReportDate'], format='%Y-%m-%dT%H:%M:%S')
+#df['nextEarningsReportReportingDate'] = pd.to_datetime(df['nextEarningsReportReportingDate'], format='%Y-%m-%dT%H:%M:%S')
+#df['lastEarningsReportReportingDate'] = pd.to_datetime(df['lastEarningsReportReportingDate'], format='%Y-%m-%dT%H:%M:%S')
+#df['exDividendDate']                  = pd.to_datetime(df['exDividendDate'], format='%Y-%m-%dT%H:%M:%S')
 
 ### Dodaj shranjevanje v SQL
 
@@ -175,9 +173,12 @@ output_file_path = os.path.join(os.path.dirname(__file__),f'dividendStocksResult
 sorted_data.to_excel(output_file_path, index=False)
 
 #Get previous week results for comparison
-prev_date            = l_today - pd.Timedelta(weeks=1)
-prev_date_f          = l_today.strftime("%Y-%m-%d")
-df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/DividendStockDataFullFilter {prev_date_f}.xlsx'))
+#prev_date            = l_today - pd.Timedelta(weeks=1)
+#prev_date_f          = l_today.strftime("%Y-%m-%d")
+all_div_files        = os.listdir(os.path.join(os.path.dirname(__file__),f'dividendStocksResults'))
+all_div_files.sort()
+df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/{all_div_files[0]}'))    
+#df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/DividendStockData {prev_date_f}.xlsx'))
 list_latest_stocks   = list(sorted_data['ticker'])
 list_previous_stocks = list(df_previous['ticker'])
 
