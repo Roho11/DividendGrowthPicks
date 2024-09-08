@@ -23,7 +23,7 @@ valid_results_files.sort(reverse=True)
 valid_alldata_files.sort(reverse=True)
 
 last_results_file = os.path.join(dividendStocksResults_filepath,valid_results_files[0])
-last_alldata_file = os.path.join(dividendStocksAllData_filepath,valid_alldata_files[1])
+last_alldata_file = os.path.join(dividendStocksAllData_filepath,valid_alldata_files[0])
 
 results_df = pd.read_excel(last_results_file)
 alldata_df = pd.read_excel(last_alldata_file, index_col='Unnamed: 0')
