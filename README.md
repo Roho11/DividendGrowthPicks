@@ -6,11 +6,11 @@ The indicators data is retrieved from https://snowball-analytics.com for 2067 U.
 
 Then each stock is filtered and valuated based on 5 fundamental metrics:
 
-Payout Ratio
-Dividend Growth Rate
-Dividend Yield
-Free Cash Flow Payout
-Earnings per share/Free Cashflow per share
+- Payout Ratio
+- Dividend Growth Rate
+- Dividend Yield
+- Free Cash Flow Payout
+- Earnings per share/Free Cashflow per share
 
 The best stocks that match the metrics are stored in a txt file and later posted on X account: https://x.com/DivGrowthPicks
 
