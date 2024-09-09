@@ -24,7 +24,7 @@ The files should be ran in this order:
 
 1. prepareJSONFIles.py - Gets all U.S. stock tickers, checks if the stock pays dividend or not (divides them into two JSON files) and lastly checks for the Snowball ID (The last part doesn't work currently so we don't run this file and just stick with the current 2067 IDs we got) -- NOT WORKING
 2. inflationData2SQL.py - For the Dividend Yield metric we need to calculate the 1Y, 3Y and 5Y inflation rate and store it in our database.
-3. dividendStocks.py - Analyses the data, returns the results, creates visualizations.
+3. dividendStocks.py - Analyzes the data, returns the results, creates visualizations.
 4. divResults2SQL.py - Stores the retrieved and results data into the database.
 
 You would also need to have the database string connection stored in config.py
