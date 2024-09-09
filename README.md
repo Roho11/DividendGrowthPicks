@@ -10,7 +10,7 @@ Then each stock is filtered and valuated based on 5 fundamental metrics:
 - Dividend Growth Rate
 - Dividend Yield
 - Free Cash Flow Payout
-- Earnings per share/Free Cashflow per share
+- Earnings per share
 
 The best stocks that match the metrics are stored in a txt file and later posted on X account: https://x.com/DivGrowthPicks
 
