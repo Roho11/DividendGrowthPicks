@@ -1,4 +1,4 @@
-#Dividend Growth Picks
+# Dividend Growth Picks
 
 Is A Python project that analyzes 2000+ U.S. dividend-paying stocks using five key financial metrics. The results are automatically posted to a dedicated Twitter (X) account.
 
@@ -16,7 +16,7 @@ The best stocks that match the metrics are stored in a txt file and later posted
 
 Results also contain some visualizations. 
 
-##File explanation
+## File explanation
 
 The files should be ran in this order:
 
@@ -29,7 +29,7 @@ The files should be ran in this order:
 
 You would also need to have the database string connection stored in config.py
 
-##Setup
+## Setup
 
 
 
