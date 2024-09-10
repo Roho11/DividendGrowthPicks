@@ -23,7 +23,7 @@ def get_snowball_analytics(stock_ids):
             payload = ""
             headers = {
                 "Accept": "application/json, text/plain, */*",
-                "Authorization": f"{auth}",
+                "Authorization": auth,
                 "Sec-Fetch-Site": "same-origin",
                 "Accept-Encoding": "gzip, deflate, br",
                 "Accept-Language": "en",
