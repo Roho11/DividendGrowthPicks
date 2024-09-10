@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import yfinance as yf
 import os
-from config import db_url
+from config import db_url, auth
 
 def get_snowball_analytics(stock_ids):
     all_div_stocks_data = []
@@ -23,7 +23,7 @@ def get_snowball_analytics(stock_ids):
             payload = ""
             headers = {
                 "Accept": "application/json, text/plain, */*",
-                "Authorization": "***REMOVED***",
+                "Authorization": f"{auth}",
                 "Sec-Fetch-Site": "same-origin",
                 "Accept-Encoding": "gzip, deflate, br",
                 "Accept-Language": "en",
