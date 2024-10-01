@@ -39,11 +39,11 @@ results_df.to_sql(results_table, engine, if_exists='append', index=False)
 
 print("Results data inserted successfully.")
 
-#Fundamentals (all_data) to SQL
+# Fundamentals (all_data) to SQL
 alldata_temp_table = 'fundamentals_temp'
 alldata_df.to_sql(alldata_temp_table, engine, if_exists='replace', index=False)
 
-#Manage duplicates
+# Manage duplicates and insert data
 query = """
     INSERT INTO fundamentals (lastupdated, sector, industry, gicsector, gicindustry, marketcapmln, marketcapmlnusd, marketcapname, eps, beta, pe, ebitda, forwardpe, forwardeps, payoutratio, divstreak, divgrowth1y, divgrowth3y, divsafetyscore, divsafetyscorelocked, lastquaterepssurprise, lastquaterrevenuesurprise, nextquaterepsestimate, nextquaterrevenueestimate, nextearningsreportdate, lastearningsreportdate, nextearningsreportreportingdate, lastearningsreportreportingdate, revenuegrowthyoy, netincomegrowthyoy, cashflowgrowthyoy, companydescription, ticker, ignorecurrency, nominal, currentnominal, realnominal, maturitydate, offerdate, effectiveyield, yieldcoupon, currentyield, modifcurrentyield, yieldtomaturity, yieldtomaturityportfolio, effectiveyieldportfolio, nkd, couponssumm, duration, listinglevel, countryiso, isin, bondtype, issuedate, term, dividendtax, lotsize, expenseratio, assetinfoid, currency, currentprice, prevcloseprice, lastdaygainsamount, lastdaygainspercent, divcurrency, nextdividenddate, exdividenddate, nextdividendpershare, divyieldfwd, isdivyieldttm, divperyearfwd, divpaidttm, divgrowth5y, divgrowthstreak, divfrequency, financialscurrency, marketcapcurrency, type, title, status, traceid)
     SELECT lastupdated, sector, industry, gicsector, gicindustry, marketcapmln, marketcapmlnusd, marketcapname, eps, beta, pe, ebitda, forwardpe, forwardeps, payoutratio, divstreak, divgrowth1y, divgrowth3y, divsafetyscore, divsafetyscorelocked, lastquaterepssurprise, lastquaterrevenuesurprise, nextquaterepsestimate, nextquaterrevenueestimate, nextearningsreportdate, lastearningsreportdate, nextearningsreportreportingdate, lastearningsreportreportingdate, revenuegrowthyoy, netincomegrowthyoy, cashflowgrowthyoy, companydescription, ticker, ignorecurrency, nominal, currentnominal, realnominal, maturitydate, offerdate, effectiveyield, yieldcoupon, currentyield, modifcurrentyield, yieldtomaturity, yieldtomaturityportfolio, effectiveyieldportfolio, nkd, couponssumm, duration, listinglevel, countryiso, isin, bondtype, issuedate, term, dividendtax, lotsize, expenseratio, assetinfoid, currency, currentprice, prevcloseprice, lastdaygainsamount, lastdaygainspercent, divcurrency, nextdividenddate, exdividenddate, nextdividendpershare, divyieldfwd, isdivyieldttm, divperyearfwd, divpaidttm, divgrowth5y, divgrowthstreak, divfrequency, financialscurrency, marketcapcurrency, type, title, status, traceid
@@ -53,9 +53,10 @@ query = """
 """
 
 with engine.begin() as connection:
-    connection.execute(text(query))
+    result = connection.execute(text(query))
 
-print("Data inserted successfully from the temp table.")
+# Get number of rows inserted
+print(f"Number of rows inserted into 'fundamentals': {result.rowcount}")
 
 
 
