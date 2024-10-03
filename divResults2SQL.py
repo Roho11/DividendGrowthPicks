@@ -4,7 +4,8 @@ from sqlalchemy import create_engine, text
 import os
 from datetime import datetime
 
-print("Starting the results2SQL script...")
+today  = str(datetime.today())
+print(f"{today} - Starting the results2SQL script...")
 
 dividendStocksResults_filepath = os.path.join(os.path.dirname(__file__), "dividendStocksResults") 
 dividendStocksAllData_filepath = os.path.join(os.path.dirname(__file__), "dividendStocksAllData") 
@@ -27,7 +28,7 @@ valid_alldata_files.sort(reverse=True)
 
 results_date = str(valid_results_files[0]).split(' ')[1].split('.')[0]
 alldata_date = str(valid_alldata_files[0]).split(' ')[1].split('.')[0]
-today_date   = str(datetime.today()).split(' ')[0]
+today_date   = today.split(' ')[0]
 
 if results_date == today_date and alldata_date == today_date:
     print('Both excel files from today found, inserting to database.')
@@ -51,12 +52,12 @@ if results_date == today_date and alldata_date == today_date:
 
     #Storing data into last_results
 
-    query = """
+    truncate_query = """
         TRUNCATE TABLE last_results
     """
 
     with engine.begin() as connection:
-        result = connection.execute(text(query))
+        result = connection.execute(text(truncate_query))
 
     results_table = 'last_results'
     results_df.to_sql(results_table, engine, if_exists='append', index=False)

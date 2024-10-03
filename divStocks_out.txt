@@ -1,0 +1,5 @@
+2024-10-03 18:14:42.036332 - Starting the results2SQL script...
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 2

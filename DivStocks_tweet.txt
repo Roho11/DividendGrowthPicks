@@ -4,9 +4,9 @@ High dividend yield & low price picks 🌾
 
 $KR        
 Div growth streak: 17.0 Y
-Div yield FWD: 2.3 %
+Div yield FWD: 2.29 %
 Payout ratio: 37.57 %
-FCF Payout: 57.67 %
+FCF Payout: 57.43 %
 1Y Div. growth: 10.91 %
 3Y Div. growth: 16.08 %
 5Y Div. growth: 15.25 %
@@ -14,9 +14,9 @@ FCF Payout: 57.67 %
 
 $WGO        
 Div growth streak: 6.0 Y
-Div yield FWD: 2.41 %
+Div yield FWD: 2.4 %
 Payout ratio: 41.79 %
-FCF Payout: 33.04 %
+FCF Payout: 32.87 %
 1Y Div. growth: 13.39 %
 3Y Div. growth: 32.99 %
 5Y Div. growth: 23.61 %
@@ -46,7 +46,7 @@ $WFC
 Div growth streak: 2.0 Y
 Div yield FWD: 2.92 %
 Payout ratio: 32.73 %
-FCF Payout: 24.64 %
+FCF Payout: 24.61 %
 1Y Div. growth: 15.38 %
 3Y Div. growth: 35.72 %
 5Y Div. growth: -4.82 %
@@ -67,7 +67,7 @@ FCF Payout: 11.49 %
 Div growth streak: 24.0 Y
 Div yield FWD: 1.7 %
 Payout ratio: 36.59 %
-FCF Payout: 15.63 %
+FCF Payout: 15.6 %
 1Y Div. growth: 4.65 %
 3Y Div. growth: 17.13 %
 5Y Div. growth: 16.91 %
@@ -75,9 +75,9 @@ FCF Payout: 15.63 %
 
 🥉 $KR        
 Div growth streak: 17.0 Y
-Div yield FWD: 2.3 %
+Div yield FWD: 2.29 %
 Payout ratio: 37.57 %
-FCF Payout: 57.67 %
+FCF Payout: 57.43 %
 1Y Div. growth: 10.91 %
 3Y Div. growth: 16.08 %
 5Y Div. growth: 15.25 %
