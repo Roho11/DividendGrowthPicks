@@ -1,0 +1,26 @@
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:81: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:91: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:91: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:91: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:161: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+Traceback (most recent call last):
+  File "/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py", line 165, in <module>
+    all_div_files.sort(Reverse=True)
+TypeError: 'Reverse' is an invalid keyword argument for sort()

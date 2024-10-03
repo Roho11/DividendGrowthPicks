@@ -162,7 +162,7 @@ sorted_data.to_excel(output_file_path, index=False)
 
 #Get previous week results for comparison
 all_div_files        = os.listdir(os.path.join(os.path.dirname(__file__),f'dividendStocksResults'))
-all_div_files.sort(Reverse=True)
+all_div_files.sort(reverse=True)
 df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/{all_div_files[0]}'))    
 list_latest_stocks   = list(sorted_data['ticker'])
 list_previous_stocks = list(df_previous['ticker'])
