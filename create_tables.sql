@@ -131,3 +131,9 @@ CREATE TABLE IF NOT EXISTS public.results
 )
 
 TABLESPACE pg_default;
+
+
+CREATE TABLE last_results AS
+SELECT *
+FROM results
+WHERE 1=0;

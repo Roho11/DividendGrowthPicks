@@ -163,7 +163,9 @@ sorted_data.to_excel(output_file_path, index=False)
 #Get previous week results for comparison
 all_div_files        = os.listdir(os.path.join(os.path.dirname(__file__),f'dividendStocksResults'))
 all_div_files.sort(reverse=True)
-df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/{all_div_files[0]}'))    
+last_file            = all_div_files[0]
+print(last_file)
+df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/{last_file}'))    
 list_latest_stocks   = list(sorted_data['ticker'])
 list_previous_stocks = list(df_previous['ticker'])
 
@@ -255,7 +257,7 @@ plt.title('Current Price vs Forward Dividend Yield by Ticker')
 plt.xlabel('Current Price ($)')
 plt.ylabel('Forward Dividend Yield')
 plt.legend(title='Ticker')
-plt.savefig(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/Price vs Div yield scatter {l_datum}.png'))
+plt.savefig(os.path.join(os.path.dirname(__file__),f'viz/Price vs Div yield scatter {l_datum}.png'))
 
 #bar plot - point cumulatives
 ticker_names = data['ticker']
@@ -284,7 +286,7 @@ plt.title('Main Bar (Points) with Nested Bars (Metrics Normalized Values)')
 plt.xticks(index, ticker_names)
 plt.legend()
 plt.tight_layout()
-plt.savefig(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/Points metrics calculation {l_datum}.png'))
+plt.savefig(os.path.join(os.path.dirname(__file__),f'viz/Points metrics calculation {l_datum}.png'))
 
 sector_counts = sorted_data['sector'].value_counts()
 
@@ -294,9 +296,9 @@ plt.axis('equal')
 plt.title('Sector distribution', fontsize=18, fontweight='bold')
 plt.xlabel('Sector', weight="bold", color="#000000", fontsize=14, labelpad=20)
 plt.ylabel('Counts', weight="bold", color="#000000", fontsize=14, labelpad=20)
-plt.savefig(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/Sector distribution {l_datum}.png'))
+plt.savefig(os.path.join(os.path.dirname(__file__),f'viz/Sector distribution {l_datum}.png'))
 
 corr_df = data[['Points', 'divGrowthStreak_norm', 'divYieldFWD_norm', 'payoutRatio_norm', 'freeCashFlowPayout_norm']]
 plt.figure(figsize=(16, 10))
 sns.heatmap(corr_df.corr(), annot=True)
-plt.savefig(os.path.join(os.path.dirname(__file__),f'dividendStocksResults/Correlation {l_datum}.png'))
+plt.savefig(os.path.join(os.path.dirname(__file__),f'viz/Correlation {l_datum}.png'))
