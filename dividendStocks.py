@@ -146,6 +146,9 @@ payout_ratio_ponder        = 0.15
 fcfp_ponder                = 0.15
 ponder_sum = growth_streak_ponder+div_yield_ponder+growth_vs_inflation_ponder+payout_ratio_ponder+fcfp_ponder #1
 
+if ponder_sum != 1:
+    print('CAUTION: ponder_sum is not 1!')
+
 #Calculate final points for ordering stocks
 data['Points'] = round((data['divGrowthStreak_norm'] * growth_streak_ponder +
 data['divYieldFWD_norm'] * div_yield_ponder +
