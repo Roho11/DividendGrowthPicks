@@ -12,6 +12,8 @@ import yfinance as yf
 import os
 from config import db_url, auth
 
+
+
 def get_snowball_analytics(stock_ids):
     all_div_stocks_data = []
     try:
@@ -91,6 +93,7 @@ filtered_df = df_clean[
 filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
 
 #added filter freeCashFlowPayout
+#Free Cash Flow Payout Ratio that is low but not negative is generally considered a positive indicator of a company's financial health and operational efficiency
 final_df = filtered_df[
     (filtered_df['freeCashFlowPayout'].between(0.0, 0.7))
 ]
@@ -144,10 +147,10 @@ div_yield_ponder           = 0.2
 growth_vs_inflation_ponder = 0.3
 payout_ratio_ponder        = 0.15
 fcfp_ponder                = 0.15
-ponder_sum = growth_streak_ponder+div_yield_ponder+growth_vs_inflation_ponder+payout_ratio_ponder+fcfp_ponder #1
+ponder_sum = growth_streak_ponder+div_yield_ponder+growth_vs_inflation_ponder+payout_ratio_ponder+fcfp_ponder 
 
 if ponder_sum != 1:
-    print('CAUTION: ponder_sum is not 1!')
+    print(f'CAUTION: ponder_sum is {ponder_sum} instead of 1!')
 
 #Calculate final points for ordering stocks
 data['Points'] = round((data['divGrowthStreak_norm'] * growth_streak_ponder +
