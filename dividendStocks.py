@@ -139,11 +139,11 @@ data.loc[:, 'Inflation_norm5'] = round(data['divGrowth5Y'].apply(lambda x : 1.0 
 
 data.loc[:, 'Inflation_norm'] = round((data['Inflation_norm1'] + data['Inflation_norm3'] + data['Inflation_norm5']) / 3,5)
 
-growth_streak_ponder       = 0.25
-div_yield_ponder           = 0.25
+growth_streak_ponder       = 0.2
+div_yield_ponder           = 0.2
 growth_vs_inflation_ponder = 0.3
-payout_ratio_ponder        = 0.1
-fcfp_ponder                = 0.1
+payout_ratio_ponder        = 0.15
+fcfp_ponder                = 0.15
 ponder_sum = growth_streak_ponder+div_yield_ponder+growth_vs_inflation_ponder+payout_ratio_ponder+fcfp_ponder #1
 
 #Calculate final points for ordering stocks
