@@ -1,32 +1,62 @@
-No newcomers.
+This week's newcomers 🛰
+
+$FDX      
+Div growth streak: 3.0 Y
+Div yield FWD: 2.08 %
+Payout ratio: 31.63 %
+FCF Payout: 16.21 %
+1Y Div. growth: 7.1 %
+3Y Div. growth: 22.11 %
+5Y Div. growth: 15.22 %
+             
+
+$MMC      
+Div growth streak: 14.0 Y
+Div yield FWD: 1.44 %
+Payout ratio: 35.23 %
+FCF Payout: 18.4 %
+1Y Div. growth: 17.31 %
+3Y Div. growth: 15.1 %
+5Y Div. growth: 11.88 %
+             
+
+$NVO      
+Div growth streak: 6.0 Y
+Div yield FWD: 1.24 %
+Payout ratio: 46.42 %
+FCF Payout: 5.98 %
+1Y Div. growth: 40.62 %
+3Y Div. growth: 24.49 %
+5Y Div. growth: 18.72 %
+             
 
 High dividend yield & low price picks 🌾
 
-$KR        
-Div growth streak: 17.0 Y
-Div yield FWD: 2.29 %
-Payout ratio: 37.57 %
-FCF Payout: 57.43 %
-1Y Div. growth: 10.91 %
-3Y Div. growth: 16.08 %
-5Y Div. growth: 15.25 %
-          
-
 $WGO        
 Div growth streak: 6.0 Y
-Div yield FWD: 2.4 %
+Div yield FWD: 2.38 %
 Payout ratio: 41.79 %
-FCF Payout: 32.87 %
+FCF Payout: 32.61 %
 1Y Div. growth: 13.39 %
 3Y Div. growth: 32.99 %
 5Y Div. growth: 23.61 %
           
 
+$KR        
+Div growth streak: 17.0 Y
+Div yield FWD: 2.28 %
+Payout ratio: 37.57 %
+FCF Payout: 57.14 %
+1Y Div. growth: 10.91 %
+3Y Div. growth: 16.08 %
+5Y Div. growth: 15.25 %
+          
+
 $VCTR        
 Div growth streak: 4.0 Y
-Div yield FWD: 2.93 %
+Div yield FWD: 2.84 %
 Payout ratio: 37.19 %
-FCF Payout: 58.38 %
+FCF Payout: 56.71 %
 1Y Div. growth: 19.14 %
 3Y Div. growth: 42.23 %
 5Y Div. growth: 45.99 %
@@ -34,9 +64,9 @@ FCF Payout: 58.38 %
 
 $FSFG        
 Div growth streak: 10.0 Y
-Div yield FWD: 2.51 %
+Div yield FWD: 2.52 %
 Payout ratio: 43.5 %
-FCF Payout: 57.86 %
+FCF Payout: 58.25 %
 1Y Div. growth: 7.14 %
 3Y Div. growth: 12.62 %
 5Y Div. growth: 22.99 %
@@ -44,9 +74,9 @@ FCF Payout: 57.86 %
 
 $WFC        
 Div growth streak: 2.0 Y
-Div yield FWD: 2.92 %
+Div yield FWD: 2.79 %
 Payout ratio: 32.73 %
-FCF Payout: 24.61 %
+FCF Payout: 23.52 %
 1Y Div. growth: 15.38 %
 3Y Div. growth: 35.72 %
 5Y Div. growth: -4.82 %
@@ -55,9 +85,9 @@ Top 3 dividend growth stocks for this week are 👇
 
 🥇 $NDSN        
 Div growth streak: 33.0 Y
-Div yield FWD: 1.22 %
+Div yield FWD: 1.24 %
 Payout ratio: 32.9 %
-FCF Payout: 11.49 %
+FCF Payout: 11.69 %
 1Y Div. growth: 6.02 %
 3Y Div. growth: 16.14 %
 5Y Div. growth: 14.07 %
@@ -65,20 +95,20 @@ FCF Payout: 11.49 %
 
 🥈 $LOW        
 Div growth streak: 24.0 Y
-Div yield FWD: 1.7 %
+Div yield FWD: 1.67 %
 Payout ratio: 36.59 %
-FCF Payout: 15.6 %
+FCF Payout: 15.35 %
 1Y Div. growth: 4.65 %
 3Y Div. growth: 17.13 %
 5Y Div. growth: 16.91 %
           
 
-🥉 $KR        
-Div growth streak: 17.0 Y
-Div yield FWD: 2.29 %
-Payout ratio: 37.57 %
-FCF Payout: 57.43 %
-1Y Div. growth: 10.91 %
-3Y Div. growth: 16.08 %
-5Y Div. growth: 15.25 %
+🥉 $DPZ        
+Div growth streak: 10.0 Y
+Div yield FWD: 1.46 %
+Payout ratio: 31.42 %
+FCF Payout: 10.5 %
+1Y Div. growth: 24.79 %
+3Y Div. growth: 17.12 %
+5Y Div. growth: 18.36 %
           
