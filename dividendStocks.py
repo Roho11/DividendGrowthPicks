@@ -3,14 +3,16 @@ import json
 import pandas as pd
 import requests
 import time
-import emoji
 import numpy as np
 from sqlalchemy import create_engine
 import matplotlib.pyplot as plt
 import seaborn as sns
 import yfinance as yf
 import os
-from config import db_url, auth
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from config import db_url, auth, sender_email, password, receiver_email
 
 def get_snowball_analytics(stock_ids):
     all_div_stocks_data = []
@@ -172,41 +174,52 @@ df_previous          = pd.read_excel(os.path.join(os.path.dirname(__file__),f'di
 list_latest_stocks   = list(sorted_data['ticker'])
 list_previous_stocks = list(df_previous['ticker'])
 
-#Start of txt result extraction
+# Start of HTML result extraction
 newcomers = []
 for i in list_latest_stocks:
     if i not in list_previous_stocks:
-        newcomers.append(i)       
+        newcomers.append(i)
+
 if len(newcomers) > 0:
     if len(newcomers) == 1:
-        newcomers_text = "This week's newcomer \U0001F6F0"
+        newcomers_text = "<h2>This week's newcomer 🚀</h2>"
     else:
-        newcomers_text = "This week's newcomers \U0001F6F0"       
+        newcomers_text = "<h2>This week's newcomers 🚀</h2>"
+
     for newcomer in newcomers:
-        # Check if newcomer exists in 'ticker' column of df_latest
         if newcomer in sorted_data['ticker'].values:
-            # Retrieve rows where 'ticker' matches 'newcomer'
             matching_rows = sorted_data[sorted_data['ticker'] == newcomer]
             row = matching_rows.iloc[0]
 
-            newcomers_text += f'''\n\n${newcomer}      
-Div growth streak: {round(row['divGrowthStreak'],0)} Y
-Div yield FWD: {round(row['divYieldFWD'],2)} %
-Payout ratio: {round(row['payoutRatio'],2)} %
-FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %
-1Y Div. growth: {round(row['divGrowth1Y'],2)} %
-3Y Div. growth: {round(row['divGrowth3Y'],2)} %
-5Y Div. growth: {round(row['divGrowth5Y'],2)} %
-             '''
+            newcomers_text += f'''
+            <p><strong>${newcomer}</strong><br>
+            Div growth streak: {round(row['divGrowthStreak'],0)} Y<br>
+            Div yield FWD: {round(row['divYieldFWD'],2)} %<br>
+            Payout ratio: {round(row['payoutRatio'],2)} %<br>
+            FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %<br>
+            1Y Div. growth: {round(row['divGrowth1Y'],2)} %<br>
+            3Y Div. growth: {round(row['divGrowth3Y'],2)} %<br>
+            5Y Div. growth: {round(row['divGrowth5Y'],2)} %<br></p>
+            '''
         else:
             print(f"Ticker {newcomer} not found in df_latest.")
 else:
-    newcomers_text = "No newcomers."
-    
-with open(os.path.join(os.path.dirname(__file__),'DivStocks_tweet.txt'), 'w') as file:
-    print(newcomers_text, file=file)  
+    newcomers_text = "<p>No newcomers.</p>"
 
-#top dividend yield per price pick
+# Wrap newcomers_text in HTML structure
+html_output = f'''
+<html>
+  <head></head>
+  <body>
+    {newcomers_text}
+  </body>
+</html>
+'''
+
+with open(os.path.join(os.path.dirname(__file__), 'DivStocks_tweet.html'), 'w') as file:
+    print(html_output, file=file)
+
+# Top dividend yield per price pick
 dvYields_high_threshold = sorted_data['divYieldFWD'].quantile(0.75)
 CurrentPrice_low_threshold = sorted_data['currentPrice'].quantile(0.25)
 
@@ -214,42 +227,97 @@ HighDivYieldLowPrice = sorted_data[(sorted_data['divYieldFWD'] > dvYields_high_t
 
 if len(HighDivYieldLowPrice) > 0:
     if len(HighDivYieldLowPrice) == 1:
-        
-        div_text = '\nHigh dividend yield & low price pick \U0001F33E'
+        div_text = '<h2>High dividend yield & low price pick 🌾</h2>'
     else:
-        div_text = '\nHigh dividend yield & low price picks \U0001F33E'
-    for index, row in HighDivYieldLowPrice.iterrows():
-        div_text += f'''\n\n${row['ticker']}        
-Div growth streak: {round(row['divGrowthStreak'],0)} Y
-Div yield FWD: {round(row['divYieldFWD'],2)} %
-Payout ratio: {round(row['payoutRatio'],2)} %
-FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %
-1Y Div. growth: {round(row['divGrowth1Y'],2)} %
-3Y Div. growth: {round(row['divGrowth3Y'],2)} %
-5Y Div. growth: {round(row['divGrowth5Y'],2)} %
-          '''
-with open(os.path.join(os.path.dirname(__file__),'DivStocks_tweet.txt'), 'a') as file:
-    print(div_text, file=file)   
+        div_text = '<h2>High dividend yield & low price picks 🌾</h2>'
 
-#top 3 stocks
+    for index, row in HighDivYieldLowPrice.iterrows():
+        div_text += f'''
+        <p><strong>${row['ticker']}</strong><br>
+        Div growth streak: {round(row['divGrowthStreak'],0)} Y<br>
+        Div yield FWD: {round(row['divYieldFWD'],2)} %<br>
+        Payout ratio: {round(row['payoutRatio'],2)} %<br>
+        FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %<br>
+        1Y Div. growth: {round(row['divGrowth1Y'],2)} %<br>
+        3Y Div. growth: {round(row['divGrowth3Y'],2)} %<br>
+        5Y Div. growth: {round(row['divGrowth5Y'],2)} %<br></p>
+        '''
+
+# Wrap div_text in HTML structure and append
+html_output += f'''
+<html>
+  <head></head>
+  <body>
+    {div_text}
+  </body>
+</html>
+'''
+
+with open(os.path.join(os.path.dirname(__file__), 'DivStocks_tweet.html'), 'a') as file:
+    print(html_output, file=file)
+
+# Top 3 stocks
 top3 = sorted_data.head(3)
-medals = {0:'\U0001F947', 1: '\U0001F948', 2: '\U0001F949'}
+medals = {0: '🥇', 1: '🥈', 2: '🥉'}
 i = 0
-text = 'Top 3 dividend growth stocks for this week are \U0001F447'
+text = '<h2>Top 3 dividend growth stocks for this week are 👇</h2>'
+
 for index, row in top3.iterrows():
-    text += f'''\n\n{medals[i]} ${row['ticker']}        
-Div growth streak: {round(row['divGrowthStreak'],0)} Y
-Div yield FWD: {round(row['divYieldFWD'],2)} %
-Payout ratio: {round(row['payoutRatio'],2)} %
-FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %
-1Y Div. growth: {round(row['divGrowth1Y'],2)} %
-3Y Div. growth: {round(row['divGrowth3Y'],2)} %
-5Y Div. growth: {round(row['divGrowth5Y'],2)} %
-          '''
-    i += 1 
-with open(os.path.join(os.path.dirname(__file__),'DivStocks_tweet.txt'), 'a') as file:
-    print(text, file=file) 
-     
+    text += f'''
+    <p>{medals[i]} <strong>${row['ticker']}</strong><br>
+    Div growth streak: {round(row['divGrowthStreak'],0)} Y<br>
+    Div yield FWD: {round(row['divYieldFWD'],2)} %<br>
+    Payout ratio: {round(row['payoutRatio'],2)} %<br>
+    FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %<br>
+    1Y Div. growth: {round(row['divGrowth1Y'],2)} %<br>
+    3Y Div. growth: {round(row['divGrowth3Y'],2)} %<br>
+    5Y Div. growth: {round(row['divGrowth5Y'],2)} %<br></p>
+    '''
+    i += 1
+
+# Append text to HTML structure
+html_output += f'''
+<html>
+  <head></head>
+  <body>
+    {text}
+  </body>
+</html>
+'''
+
+html_file_path = os.path.join(os.path.dirname(__file__), 'DivStocks_tweet.html')
+
+with open(html_file_path, 'a') as file:
+    print(html_output, file=file)
+
+with open(html_file_path, 'r') as file:
+    html_content = file.read()
+
+for email in receiver_email:
+    message = MIMEMultipart()
+    message["From"] = sender_email
+    message["To"] = email
+    message["Subject"] = 'Dividend growth picks' 
+
+    message.attach(MIMEText(html_content, "html"))
+
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(sender_email, password)
+        server.sendmail(sender_email, email, message.as_string())
+        print("Email sent successfully to", email)
+    except Exception as e:
+        print("Email could not be sent:", str(e))
+    finally:
+        server.quit()
+
+try:
+    os.remove(html_file_path)
+    print(f"File '{html_file_path}' deleted successfully.")
+except Exception as e:
+    print(f"Error deleting file: {str(e)}")
+
 #Visualizations
 
 #scatter plot current price vs div yield
