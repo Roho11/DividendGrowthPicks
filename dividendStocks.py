@@ -12,8 +12,6 @@ import yfinance as yf
 import os
 from config import db_url, auth
 
-
-
 def get_snowball_analytics(stock_ids):
     all_div_stocks_data = []
     try:

@@ -3,3 +3,13 @@ Both excel files from today found, inserting to database.
 Results data inserted successfully.
 last_results data inserted successfully.
 Number of rows inserted into 'fundamentals': 2
+2024-10-16 21:30:01.629856 - Starting the results2SQL script...
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 233
+2024-10-16 21:51:18.889940 - Starting the results2SQL script...
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 2
