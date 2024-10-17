@@ -175,6 +175,7 @@ list_latest_stocks   = list(sorted_data['ticker'])
 list_previous_stocks = list(df_previous['ticker'])
 
 # Start of HTML result extraction
+# newcomers
 newcomers = []
 for i in list_latest_stocks:
     if i not in list_previous_stocks:
@@ -206,7 +207,6 @@ if len(newcomers) > 0:
 else:
     newcomers_text = "<p>No newcomers.</p>"
 
-# Wrap newcomers_text in HTML structure
 html_output = f'''
 <html>
   <head></head>
@@ -215,46 +215,6 @@ html_output = f'''
   </body>
 </html>
 '''
-
-with open(os.path.join(os.path.dirname(__file__), 'DivStocks_tweet.html'), 'w') as file:
-    print(html_output, file=file)
-
-# Top dividend yield per price pick
-dvYields_high_threshold = sorted_data['divYieldFWD'].quantile(0.75)
-CurrentPrice_low_threshold = sorted_data['currentPrice'].quantile(0.25)
-
-HighDivYieldLowPrice = sorted_data[(sorted_data['divYieldFWD'] > dvYields_high_threshold) & (sorted_data['currentPrice'] < CurrentPrice_low_threshold)]
-
-if len(HighDivYieldLowPrice) > 0:
-    if len(HighDivYieldLowPrice) == 1:
-        div_text = '<h2>High dividend yield & low price pick 🌾</h2>'
-    else:
-        div_text = '<h2>High dividend yield & low price picks 🌾</h2>'
-
-    for index, row in HighDivYieldLowPrice.iterrows():
-        div_text += f'''
-        <p><strong>${row['ticker']}</strong><br>
-        Div growth streak: {round(row['divGrowthStreak'],0)} Y<br>
-        Div yield FWD: {round(row['divYieldFWD'],2)} %<br>
-        Payout ratio: {round(row['payoutRatio'],2)} %<br>
-        FCF Payout: {round(row['freeCashFlowPayout']*100,2)} %<br>
-        1Y Div. growth: {round(row['divGrowth1Y'],2)} %<br>
-        3Y Div. growth: {round(row['divGrowth3Y'],2)} %<br>
-        5Y Div. growth: {round(row['divGrowth5Y'],2)} %<br></p>
-        '''
-
-# Wrap div_text in HTML structure and append
-html_output += f'''
-<html>
-  <head></head>
-  <body>
-    {div_text}
-  </body>
-</html>
-'''
-
-with open(os.path.join(os.path.dirname(__file__), 'DivStocks_tweet.html'), 'a') as file:
-    print(html_output, file=file)
 
 # Top 3 stocks
 top3 = sorted_data.head(3)
@@ -287,7 +247,7 @@ html_output += f'''
 
 html_file_path = os.path.join(os.path.dirname(__file__), 'DivStocks_tweet.html')
 
-with open(html_file_path, 'a') as file:
+with open(html_file_path, 'w') as file:
     print(html_output, file=file)
 
 with open(html_file_path, 'r') as file:
@@ -311,12 +271,6 @@ for email in receiver_email:
         print("Email could not be sent:", str(e))
     finally:
         server.quit()
-
-try:
-    os.remove(html_file_path)
-    print(f"File '{html_file_path}' deleted successfully.")
-except Exception as e:
-    print(f"Error deleting file: {str(e)}")
 
 #Visualizations
 
