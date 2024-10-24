@@ -3,6 +3,9 @@ import pandas as pd
 from sqlalchemy import create_engine
 from config import db_url
 
+today  = str(datetime.today())
+print(f"--- {today} --- Starting the inflationData2SQL script\n")
+
 url = 'https://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/'
 dfs = pd.read_html(url)
 df = dfs[0]

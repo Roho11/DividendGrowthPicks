@@ -14,6 +14,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from config import db_url, auth, sender_email, password, receiver_email
 
+today  = str(datetime.today())
+print(f"--- {today} --- Starting the dividendStocks script\n")
+
 def get_snowball_analytics(stock_ids):
     all_div_stocks_data = []
     try:
@@ -90,7 +93,7 @@ filtered_df = df_clean[
 ]
 
 # Adding FCF, FCFP and number of shares ONLY to the filtered_df
-filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
+filtered_df.loc[:, ['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
 
 #added filter freeCashFlowPayout
 #Free Cash Flow Payout Ratio that is low but not negative is generally considered a positive indicator of a company's financial health and operational efficiency

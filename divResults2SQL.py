@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 
 today  = str(datetime.today())
-print(f"{today} - Starting the results2SQL script...")
+print(f"--- {today} --- Starting the results2SQL script\n")
 
 dividendStocksResults_filepath = os.path.join(os.path.dirname(__file__), "dividendStocksResults") 
 dividendStocksAllData_filepath = os.path.join(os.path.dirname(__file__), "dividendStocksAllData") 
