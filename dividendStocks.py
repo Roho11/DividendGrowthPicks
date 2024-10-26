@@ -56,8 +56,9 @@ def add_free_cash_flow(df):
     cp          = df['currentPrice']
     divyield    = df['divYieldFWD']
     num_shares  = mc / cp
-    time.sleep(2)
-    tick        = yf.Ticker(df['ticker'])
+    time.sleep(3)
+    ticker      = df['ticker']
+    tick        = yf.Ticker(ticker)
     cf          = tick.cash_flow
     try:
         last_value  = cf.columns[0]
@@ -65,10 +66,10 @@ def add_free_cash_flow(df):
         fcfps       = fcf / num_shares
         fcfp        = divyield / fcfps
     except IndexError:
-        #print(f"{df['ticker']} cash flow: {cf}")
         fcfp       = np.nan
         fcf        = np.nan
         num_shares = np.nan
+    #print(f'{ticker} has free cash flow payout of {fcfp}.')
     return fcfp, fcf, num_shares
 
 #Get data, store data
