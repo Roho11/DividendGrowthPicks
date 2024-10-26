@@ -93,9 +93,10 @@ filtered_df = df_clean[
     (df_clean['divYieldFWD'].between(1, 3.1)) 
 ]
 
-# Adding FCF, FCFP and number of shares ONLY to the filtered_df
-filtered_df.loc[:, ['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(add_free_cash_flow, axis=1).apply(pd.Series)
-
+# Adding FCF, FCFP, and number of shares ONLY to the filtered_df
+filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+    add_free_cash_flow, axis=1, result_type='expand'
+)
 #added filter freeCashFlowPayout
 #Free Cash Flow Payout Ratio that is low but not negative is generally considered a positive indicator of a company's financial health and operational efficiency
 final_df = filtered_df[
