@@ -172,3 +172,261 @@ Both excel files from today found, inserting to database.
 Results data inserted successfully.
 last_results data inserted successfully.
 Number of rows inserted into 'fundamentals': 396
+--- 2024-12-11 19:03:01.633446 --- Starting the inflationData2SQL script
+
+Inflation data for Nov: 2.75%
+Inflation data for Nov: 13.51%
+Inflation data for Nov: 22.66%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:87: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:172: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+--- 2024-12-11 19:10:06.210425 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2024-12-11 21:30:02.215587 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 394
+--- 2024-12-18 19:03:01.608996 --- Starting the inflationData2SQL script
+
+Inflation data for Nov: 2.75%
+Inflation data for Nov: 13.51%
+Inflation data for Nov: 22.66%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:87: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:172: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+--- 2024-12-18 19:10:18.428369 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2024-12-18 21:30:14.707187 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 482
+--- 2024-12-25 19:03:01.249771 --- Starting the inflationData2SQL script
+
+Inflation data for Nov: 2.75%
+Inflation data for Nov: 13.51%
+Inflation data for Nov: 22.66%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:87: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:172: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+--- 2024-12-25 19:10:05.074080 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2024-12-25 21:30:02.346260 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 1033
+--- 2025-01-01 19:03:03.157139 --- Starting the inflationData2SQL script
+
+Inflation data for Nov: 2.75%
+Inflation data for Nov: 13.51%
+Inflation data for Nov: 22.66%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:87: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:172: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+--- 2025-01-01 19:10:08.925857 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-01-01 21:30:03.262489 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 155
+--- 2025-01-08 19:03:05.360831 --- Starting the inflationData2SQL script
+
+Inflation data for Nov: 2.75%
+Inflation data for Nov: 13.51%
+Inflation data for Nov: 22.66%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:87: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:172: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+--- 2025-01-08 19:10:13.347684 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-01-08 21:30:01.893169 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 376
+--- 2025-01-15 19:03:02.779083 --- Starting the inflationData2SQL script
+
+Traceback (most recent call last):
+  File "/Users/Roho11/Documents/GitHub/DividendGrowthPicks/inflationData2SQL.py", line 12, in <module>
+    df.drop(df.columns[[14, 15, 16]], axis=1, inplace=True)
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 5196, in __getitem__
+    result = getitem(key)
+IndexError: index 16 is out of bounds for axis 0 with size 16
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:87: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:172: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+--- 2025-01-15 19:10:20.611133 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-01-15 21:30:05.391821 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 571
+--- 2025-01-22 19:03:03.494698 --- Starting the inflationData2SQL script
+
+Traceback (most recent call last):
+  File "/Users/Roho11/Documents/GitHub/DividendGrowthPicks/inflationData2SQL.py", line 12, in <module>
+    df.drop(df.columns[[14, 15, 16]], axis=1, inplace=True)
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 5196, in __getitem__
+    result = getitem(key)
+IndexError: index 16 is out of bounds for axis 0 with size 16
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:87: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:172: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+--- 2025-01-22 19:10:12.733540 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-01-22 21:30:02.208709 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 915
