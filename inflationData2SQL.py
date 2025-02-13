@@ -9,7 +9,15 @@ print(f"--- {today} --- Starting the inflationData2SQL script\n")
 url = 'https://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/'
 dfs = pd.read_html(url)
 df = dfs[0]
-df.drop(df.columns[[14, 15, 16]], axis=1, inplace=True)
+
+#Rabimo samo mesecne podatke inflacije
+good_cols = []
+cols = df.columns.tolist()
+for c in cols:
+    if c in range(0,13):
+        good_cols.append(c)
+good_cols
+df[good_cols]
 df_edited = df
 df_edited.columns = df_edited.iloc[1]
 df_edited = df_edited.drop(0)
