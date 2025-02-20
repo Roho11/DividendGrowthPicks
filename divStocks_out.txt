@@ -511,3 +511,40 @@ Number of rows inserted into 'fundamentals': 363
 --- 2025-02-12 21:30:03.776369 --- Starting the results2SQL script
 
 Could not find todays results OR alldata excel file.
+--- 2025-02-19 19:03:01.877500 --- Starting the inflationData2SQL script
+
+Inflation data for Jan: 3.0%
+Inflation data for Jan: 12.99%
+Inflation data for Jan: 23.14%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:87: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  df.to_excel(DSDfile)
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:172: UserWarning: Pandas requires version '1.4.3' or newer of 'xlsxwriter' (version '1.3.8' currently installed).
+  sorted_data.to_excel(output_file_path, index=False)
+No handles with labels found to put in legend.
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/pandas/plotting/_matplotlib/core.py:1859: MatplotlibDeprecationWarning: normalize=None does not normalize if the sum is less than 1 but this behavior is deprecated since 3.3 until two minor releases later. After the deprecation period the default value will be normalize=True. To prevent normalization pass normalize=False 
+  results = ax.pie(y, labels=blabels, **kwds)
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/seaborn/matrix.py:194: RuntimeWarning: All-NaN slice encountered
+  vmin = np.nanmin(calc_data)
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/seaborn/matrix.py:199: RuntimeWarning: All-NaN slice encountered
+  vmax = np.nanmax(calc_data)
+--- 2025-02-19 19:10:08.244228 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
