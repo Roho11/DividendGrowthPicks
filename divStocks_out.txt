@@ -677,3 +677,42 @@ Both excel files from today found, inserting to database.
 Results data inserted successfully.
 last_results data inserted successfully.
 Number of rows inserted into 'fundamentals': 368
+--- 2025-03-19 19:03:01.705219 --- Starting the inflationData2SQL script
+
+Inflation data for Feb: 2.82%
+Inflation data for Feb: 12.47%
+Inflation data for Feb: 23.35%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+No handles with labels found to put in legend.
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/pandas/plotting/_matplotlib/core.py:1859: MatplotlibDeprecationWarning: normalize=None does not normalize if the sum is less than 1 but this behavior is deprecated since 3.3 until two minor releases later. After the deprecation period the default value will be normalize=True. To prevent normalization pass normalize=False 
+  results = ax.pie(y, labels=blabels, **kwds)
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/seaborn/matrix.py:194: RuntimeWarning: All-NaN slice encountered
+  vmin = np.nanmin(calc_data)
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/seaborn/matrix.py:199: RuntimeWarning: All-NaN slice encountered
+  vmax = np.nanmax(calc_data)
+--- 2025-03-19 19:10:09.299752 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-03-19 21:30:03.791107 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 718
