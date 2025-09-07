@@ -819,3 +819,238 @@ Both excel files from today found, inserting to database.
 Results data inserted successfully.
 last_results data inserted successfully.
 Number of rows inserted into 'fundamentals': 118
+--- 2025-04-16 19:03:02.373441 --- Starting the inflationData2SQL script
+
+Inflation data for Mar: 2.39%
+Inflation data for Mar: 11.23%
+Inflation data for Mar: 23.9%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+--- 2025-04-16 19:10:17.782776 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-04-16 21:30:07.139185 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 350
+--- 2025-04-23 19:03:01.794467 --- Starting the inflationData2SQL script
+
+Inflation data for Mar: 2.39%
+Inflation data for Mar: 11.23%
+Inflation data for Mar: 23.9%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+--- 2025-04-23 19:10:16.690238 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-04-23 21:30:03.335099 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Number of rows inserted into 'fundamentals': 842
+--- 2025-06-04 19:03:00.918082 --- Starting the inflationData2SQL script
+
+Inflation data for Apr: 2.31%
+Inflation data for Apr: 10.96%
+Inflation data for Apr: 25.12%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+No handles with labels found to put in legend.
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/pandas/plotting/_matplotlib/core.py:1859: MatplotlibDeprecationWarning: normalize=None does not normalize if the sum is less than 1 but this behavior is deprecated since 3.3 until two minor releases later. After the deprecation period the default value will be normalize=True. To prevent normalization pass normalize=False 
+  results = ax.pie(y, labels=blabels, **kwds)
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/seaborn/matrix.py:194: RuntimeWarning: All-NaN slice encountered
+  vmin = np.nanmin(calc_data)
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/seaborn/matrix.py:199: RuntimeWarning: All-NaN slice encountered
+  vmax = np.nanmax(calc_data)
+--- 2025-06-04 19:10:16.733560 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-06-04 21:30:01.550326 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Traceback (most recent call last):
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.DatatypeMismatch: column "nextdividenddate" is of type double precision but expression is of type text
+LINE 3: ...daygainsamount, lastdaygainspercent, divcurrency, nextdivide...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/Roho11/Documents/GitHub/DividendGrowthPicks/divResults2SQL.py", line 81, in <module>
+    result = connection.execute(text(query))
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.DatatypeMismatch) column "nextdividenddate" is of type double precision but expression is of type text
+LINE 3: ...daygainsamount, lastdaygainspercent, divcurrency, nextdivide...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+[SQL: 
+        INSERT INTO fundamentals (lastupdated, sector, industry, gicsector, gicindustry, marketcapmln, marketcapmlnusd, marketcapname, eps, beta, pe, ebitda, forwardpe, forwardeps, payoutratio, divstreak, divgrowth1y, divgrowth3y, divsafetyscore, divsafetyscorelocked, lastquaterepssurprise, lastquaterrevenuesurprise, nextquaterepsestimate, nextquaterrevenueestimate, nextearningsreportdate, lastearningsreportdate, nextearningsreportreportingdate, lastearningsreportreportingdate, revenuegrowthyoy, netincomegrowthyoy, cashflowgrowthyoy, companydescription, ticker, ignorecurrency, nominal, currentnominal, realnominal, maturitydate, offerdate, effectiveyield, yieldcoupon, currentyield, modifcurrentyield, yieldtomaturity, yieldtomaturityportfolio, effectiveyieldportfolio, nkd, couponssumm, duration, listinglevel, countryiso, isin, bondtype, issuedate, term, dividendtax, lotsize, expenseratio, assetinfoid, currency, currentprice, prevcloseprice, lastdaygainsamount, lastdaygainspercent, divcurrency, nextdividenddate, exdividenddate, nextdividendpershare, divyieldfwd, isdivyieldttm, divperyearfwd, divpaidttm, divgrowth5y, divgrowthstreak, divfrequency, financialscurrency, marketcapcurrency, type, title, status, traceid)
+        SELECT lastupdated, sector, industry, gicsector, gicindustry, marketcapmln, marketcapmlnusd, marketcapname, eps, beta, pe, ebitda, forwardpe, forwardeps, payoutratio, divstreak, divgrowth1y, divgrowth3y, divsafetyscore, divsafetyscorelocked, lastquaterepssurprise, lastquaterrevenuesurprise, nextquaterepsestimate, nextquaterrevenueestimate, nextearningsreportdate, lastearningsreportdate, nextearningsreportreportingdate, lastearningsreportreportingdate, revenuegrowthyoy, netincomegrowthyoy, cashflowgrowthyoy, companydescription, ticker, ignorecurrency, nominal, currentnominal, realnominal, maturitydate, offerdate, effectiveyield, yieldcoupon, currentyield, modifcurrentyield, yieldtomaturity, yieldtomaturityportfolio, effectiveyieldportfolio, nkd, couponssumm, duration, listinglevel, countryiso, isin, bondtype, issuedate, term, dividendtax, lotsize, expenseratio, assetinfoid, currency, currentprice, prevcloseprice, lastdaygainsamount, lastdaygainspercent, divcurrency, nextdividenddate, exdividenddate, nextdividendpershare, divyieldfwd, isdivyieldttm, divperyearfwd, divpaidttm, divgrowth5y, divgrowthstreak, divfrequency, financialscurrency, marketcapcurrency, type, title, status, traceid
+        FROM fundamentals_temp
+        ON CONFLICT (ticker, lastupdated)
+        DO NOTHING;
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+--- 2025-08-20 19:03:01.724084 --- Starting the inflationData2SQL script
+
+Inflation data for July: 2.7%
+Inflation data for July: 9.04%
+Inflation data for July: 24.68%
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+/Users/Roho11/Documents/GitHub/DividendGrowthPicks/dividendStocks.py:97: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  filtered_df[['freeCashFlowPayout', 'freeCashFlow', 'shareNum']] = filtered_df.apply(
+No handles with labels found to put in legend.
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/pandas/plotting/_matplotlib/core.py:1859: MatplotlibDeprecationWarning: normalize=None does not normalize if the sum is less than 1 but this behavior is deprecated since 3.3 until two minor releases later. After the deprecation period the default value will be normalize=True. To prevent normalization pass normalize=False 
+  results = ax.pie(y, labels=blabels, **kwds)
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/seaborn/matrix.py:194: RuntimeWarning: All-NaN slice encountered
+  vmin = np.nanmin(calc_data)
+/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/seaborn/matrix.py:199: RuntimeWarning: All-NaN slice encountered
+  vmax = np.nanmax(calc_data)
+--- 2025-08-20 19:10:17.286592 --- Starting the dividendStocks script
+
+Email sent successfully to kosirok@gmail.com
+--- 2025-08-20 21:30:02.813140 --- Starting the results2SQL script
+
+Both excel files from today found, inserting to database.
+Results data inserted successfully.
+last_results data inserted successfully.
+Traceback (most recent call last):
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.DatatypeMismatch: column "nextdividenddate" is of type double precision but expression is of type text
+LINE 3: ...daygainsamount, lastdaygainspercent, divcurrency, nextdivide...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/Roho11/Documents/GitHub/DividendGrowthPicks/divResults2SQL.py", line 81, in <module>
+    result = connection.execute(text(query))
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1418, in execute
+    return meth(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/Roho11/opt/anaconda3/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 941, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.DatatypeMismatch) column "nextdividenddate" is of type double precision but expression is of type text
+LINE 3: ...daygainsamount, lastdaygainspercent, divcurrency, nextdivide...
+                                                             ^
+HINT:  You will need to rewrite or cast the expression.
+
+[SQL: 
+        INSERT INTO fundamentals (lastupdated, sector, industry, gicsector, gicindustry, marketcapmln, marketcapmlnusd, marketcapname, eps, beta, pe, ebitda, forwardpe, forwardeps, payoutratio, divstreak, divgrowth1y, divgrowth3y, divsafetyscore, divsafetyscorelocked, lastquaterepssurprise, lastquaterrevenuesurprise, nextquaterepsestimate, nextquaterrevenueestimate, nextearningsreportdate, lastearningsreportdate, nextearningsreportreportingdate, lastearningsreportreportingdate, revenuegrowthyoy, netincomegrowthyoy, cashflowgrowthyoy, companydescription, ticker, ignorecurrency, nominal, currentnominal, realnominal, maturitydate, offerdate, effectiveyield, yieldcoupon, currentyield, modifcurrentyield, yieldtomaturity, yieldtomaturityportfolio, effectiveyieldportfolio, nkd, couponssumm, duration, listinglevel, countryiso, isin, bondtype, issuedate, term, dividendtax, lotsize, expenseratio, assetinfoid, currency, currentprice, prevcloseprice, lastdaygainsamount, lastdaygainspercent, divcurrency, nextdividenddate, exdividenddate, nextdividendpershare, divyieldfwd, isdivyieldttm, divperyearfwd, divpaidttm, divgrowth5y, divgrowthstreak, divfrequency, financialscurrency, marketcapcurrency, type, title, status, traceid)
+        SELECT lastupdated, sector, industry, gicsector, gicindustry, marketcapmln, marketcapmlnusd, marketcapname, eps, beta, pe, ebitda, forwardpe, forwardeps, payoutratio, divstreak, divgrowth1y, divgrowth3y, divsafetyscore, divsafetyscorelocked, lastquaterepssurprise, lastquaterrevenuesurprise, nextquaterepsestimate, nextquaterrevenueestimate, nextearningsreportdate, lastearningsreportdate, nextearningsreportreportingdate, lastearningsreportreportingdate, revenuegrowthyoy, netincomegrowthyoy, cashflowgrowthyoy, companydescription, ticker, ignorecurrency, nominal, currentnominal, realnominal, maturitydate, offerdate, effectiveyield, yieldcoupon, currentyield, modifcurrentyield, yieldtomaturity, yieldtomaturityportfolio, effectiveyieldportfolio, nkd, couponssumm, duration, listinglevel, countryiso, isin, bondtype, issuedate, term, dividendtax, lotsize, expenseratio, assetinfoid, currency, currentprice, prevcloseprice, lastdaygainsamount, lastdaygainspercent, divcurrency, nextdividenddate, exdividenddate, nextdividendpershare, divyieldfwd, isdivyieldttm, divperyearfwd, divpaidttm, divgrowth5y, divgrowthstreak, divfrequency, financialscurrency, marketcapcurrency, type, title, status, traceid
+        FROM fundamentals_temp
+        ON CONFLICT (ticker, lastupdated)
+        DO NOTHING;
+    ]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+--- 2025-09-03 19:03:01.015802 --- Starting the inflationData2SQL script
+
+Inflation data for July: 2.7%
+Inflation data for July: 9.04%
+Inflation data for July: 24.68%
